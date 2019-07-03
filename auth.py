@@ -3,7 +3,7 @@ import time
 import logging
 from datetime import datetime
 from Crypto.Cipher import AES
-from Queue import Queue, Empty
+from queue import Queue, Empty
 from bluepy.btle import Peripheral, DefaultDelegate, ADDR_TYPE_RANDOM, BTLEException
 import crc16
 import os
