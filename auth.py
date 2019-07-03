@@ -317,7 +317,7 @@ class MiBand3(Peripheral):
             base_value = '\x04\x01'
         elif type == 3:
                 base_value = '\x03\x01'
-        phone = raw_input('Sender Name or Caller ID')
+        phone = input('Sender Name or Caller ID')
         svc = self.getServiceByUUID(UUIDS.SERVICE_ALERT_NOTIFICATION)
         char = svc.getCharacteristics(UUIDS.CHARACTERISTIC_CUSTOM_ALERT)[0]
         char.write(base_value+phone, withResponse=True)
@@ -326,8 +326,8 @@ class MiBand3(Peripheral):
         print('Change date and time')
         svc = self.getServiceByUUID(UUIDS.SERVICE_MIBAND1)
         char = svc.getCharacteristics(UUIDS.CHARACTERISTIC_CURRENT_TIME)[0]
-        date = raw_input('Enter the date in dd-mm-yyyy format\n')
-        time = raw_input('Enter the time in HH:MM:SS format\n')
+        date = input('Enter the date in dd-mm-yyyy format\n')
+        time = input('Enter the time in HH:MM:SS format\n')
         #
         day = int(date[:2])
         month = int(date[3:5])
@@ -343,7 +343,7 @@ class MiBand3(Peripheral):
         write_val = write_val.replace('0x', '\\x')
         print(write_val)
         char.write(write_val, withResponse=True)
-        raw_input('Date Changed, press any key to continue')
+        input('Date Changed, press any key to continue')
     def dfuUpdate(self, fileName):
         print('Update Firmware/Resource')
         svc = self.getServiceByUUID(UUIDS.SERVICE_DFU_FIRMWARE)
@@ -367,7 +367,7 @@ class MiBand3(Peripheral):
                 crc ^= ((crc & 0xFF) << 5) & 0xFFFFFF
         crc &= 0xFFFF
         print('CRC Value is-->', crc)
-        raw_input('Press Enter to Continue')
+        input('Press Enter to Continue')
         if extension.lower() == "res":
             # file size hex value is
             char.write('\x01'+ struct.pack("<i", fileSize)[:-1] +'\x02', withResponse=True)
@@ -379,7 +379,7 @@ class MiBand3(Peripheral):
           while True:
             c = f.read(20) #takes 20 bytes :D
             if not c:
-              print "Update Over"
+              print('Update Over')
               break
             print('Writing Resource', c.encode('hex'))
             char1.write(c)
@@ -393,7 +393,7 @@ class MiBand3(Peripheral):
             self.waitForNotifications(0.5)
             char.write('\x05', withResponse=True)
         print('Update Complete')
-        raw_input('Press Enter to Continue')
+        input('Press Enter to Continue')
     def start_raw_data_realtime(self, heart_measure_callback=None, heart_raw_callback=None, accel_raw_callback=None):
             char_m = self.svc_heart.getCharacteristics(UUIDS.CHARACTERISTIC_HEART_RATE_MEASURE)[0]
             char_d = char_m.getDescriptors(forUUID=UUIDS.NOTIFICATION_DESCRIPTOR)[0]
