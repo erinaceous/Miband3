@@ -1,15 +1,12 @@
-import struct
 import time
 import logging
 from datetime import datetime
 from Crypto.Cipher import AES
 from queue import Queue, Empty
-from bluepy.btle import Peripheral, DefaultDelegate, ADDR_TYPE_RANDOM, BTLEException
-import crc16
+from bluepy.btle import Peripheral, DefaultDelegate, ADDR_TYPE_RANDOM
 import os
 import struct
-
-from constants import UUIDS, AUTH_STATES, ALERT_TYPES, QUEUE_TYPES
+from .constants import UUIDS, AUTH_STATES, QUEUE_TYPES
 
 
 class AuthenticationDelegate(DefaultDelegate):

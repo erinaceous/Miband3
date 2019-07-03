@@ -1,4 +1,3 @@
-import crc16
 import os
 crc = 0xFFFF
 filename = "Mili_wuhan.res"

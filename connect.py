@@ -1,8 +1,4 @@
-import sys
 from auth import MiBand3
-from constants import ALERT_TYPES
-import time
-import os
 
 MAC_ADDR = input("Band MAC address: ")
 print('Attempting to connect to ', MAC_ADDR)
